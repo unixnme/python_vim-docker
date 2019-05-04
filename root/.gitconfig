@@ -1,0 +1,7 @@
+[user]
+	email = unixnme@gmail.com
+	name = Unix&Me
+[help]
+	autocorrect = 0
+[core]
+	editor = vim

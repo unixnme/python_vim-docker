@@ -17,10 +17,13 @@ RUN \
   apt-get install -y byobu curl git htop man unzip vim wget && \
   rm -rf /var/lib/apt/lists/*
 
+RUN apt-get install vim
+
 # Add files.
 ADD root/.bashrc /root/.bashrc
+ADD root/git-completion.bash /root/git-completion.bash
+ADD root/git-prompt.sh /root/git-prompt.sh
 ADD root/.gitconfig /root/.gitconfig
-ADD root/.scripts /root/.scripts
 
 # Set environment variables.
 ENV HOME /root
