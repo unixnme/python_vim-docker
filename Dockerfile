@@ -15,6 +15,7 @@ RUN \
   apt-get install -y build-essential && \
   apt-get install -y software-properties-common && \
   apt-get install -y byobu curl git htop man unzip vim wget && \
+  apt-get install -y build-essential cmake  python3-dev && \
   rm -rf /var/lib/apt/lists/*
 
 RUN apt-get install vim
@@ -35,6 +36,8 @@ WORKDIR /root
 # youcompleteme
 RUN git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 RUN vim +PluginInstall +qall
+RUN  cd ~/.vim/bundle/YouCompleteMe && \
+ python3 install.py --clang-completer
 
 # Define default command.
 CMD ["bash"]
