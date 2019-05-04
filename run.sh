@@ -1,2 +1,2 @@
-docker build -t NAME .
-docker run -it HASH bash
+docker build -t NAME:TAG .
+docker run -it TAG bash

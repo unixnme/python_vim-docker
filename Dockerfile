@@ -5,7 +5,7 @@
 #
 
 # Pull base image.
-FROM ubuntu:14.04
+FROM ubuntu:18.04
 
 # Install.
 RUN \
@@ -20,6 +20,7 @@ RUN \
 RUN apt-get install vim
 
 # Add files.
+ADD root/.vimrc /root/.vimrc
 ADD root/.bashrc /root/.bashrc
 ADD root/git-completion.bash /root/git-completion.bash
 ADD root/git-prompt.sh /root/git-prompt.sh
@@ -31,5 +32,10 @@ ENV HOME /root
 # Define working directory.
 WORKDIR /root
 
+# youcompleteme
+RUN git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+RUN vim +PluginInstall +qall
+
 # Define default command.
 CMD ["bash"]
+
