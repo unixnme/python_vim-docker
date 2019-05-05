@@ -11,14 +11,19 @@ FROM ubuntu:18.04
 RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
   apt-get update && \
-  apt-get -y upgrade && \
+  apt-get -y upgrade
+
+RUN \
   apt-get install -y build-essential && \
   apt-get install -y software-properties-common && \
   apt-get install -y byobu curl git htop man unzip vim wget && \
-  apt-get install -y build-essential cmake  python3-dev && \
+  apt-get install -y build-essential cmake  python3-dev vim && \
+  apt-get install -y curl vim exuberant-ctags git ack-grep python3-pip && \
   rm -rf /var/lib/apt/lists/*
+RUN \
+  pip3 install pep8 flake8 pyflakes isort yapf
 
-RUN apt-get install vim
+RUN vim +qall
 
 # Add files.
 ADD root/.vimrc /root/.vimrc
@@ -33,11 +38,6 @@ ENV HOME /root
 # Define working directory.
 WORKDIR /root
 
-# youcompleteme
-RUN git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-RUN vim +PluginInstall +qall
-RUN  cd ~/.vim/bundle/YouCompleteMe && \
- python3 install.py --clang-completer
 
 # Define default command.
 CMD ["bash"]
