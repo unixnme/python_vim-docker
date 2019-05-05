@@ -20,10 +20,10 @@ RUN \
   apt-get install -y build-essential cmake  python3-dev vim && \
   apt-get install -y curl vim exuberant-ctags git ack-grep python3-pip && \
   rm -rf /var/lib/apt/lists/*
+
 RUN \
   pip3 install pep8 flake8 pyflakes isort yapf
 
-RUN vim +qall
 
 # Add files.
 ADD root/.vimrc /root/.vimrc
@@ -38,7 +38,5 @@ ENV HOME /root
 # Define working directory.
 WORKDIR /root
 
-
 # Define default command.
 CMD ["bash"]
-
